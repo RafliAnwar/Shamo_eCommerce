@@ -248,7 +248,9 @@ class SignUpPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/home');
+          },
           child: Text(
             'Sign Up',
             style: primaryTextStyle.copyWith(
