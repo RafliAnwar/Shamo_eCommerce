@@ -22,7 +22,9 @@ class _MainPageState extends State<MainPage> {
             'assets/icon_cart.png',
             width: 20,
           ),
-          onPressed: () {});
+          onPressed: () {
+            Navigator.pushNamed(context, '/cart');
+          });
     }
 
     Widget customBotNav() {
