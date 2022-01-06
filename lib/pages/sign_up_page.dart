@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo_ecommerce/providers/auth_provider.dart';
 import 'package:shamo_ecommerce/theme.dart';
+import 'package:shamo_ecommerce/widgets/loading_button.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -17,11 +18,15 @@ class _SignUpPageState extends State<SignUpPage> {
 
   TextEditingController passwordController = TextEditingController(text: '');
 
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     handleSignUp() async {
+      setState(() {
+        isLoading = true;
+      });
       if (await authProvider.register(
         name: nameController.text,
         email: emailController.text,
@@ -29,7 +34,22 @@ class _SignUpPageState extends State<SignUpPage> {
         password: passwordController.text,
       )) {
         Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          //SNACKBAR
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Gagal Register',
+              style: primaryTextStyle.copyWith(fontSize: 12),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
       }
+      setState(() {
+        isLoading = false;
+      });
     }
 
     Widget header() {
@@ -336,7 +356,7 @@ class _SignUpPageState extends State<SignUpPage> {
             userNameInput(),
             emailInput(),
             passwordInput(),
-            signUpButton(),
+            isLoading ? LoadingButton() : signUpButton(),
             Spacer(),
             footer(),
           ],
