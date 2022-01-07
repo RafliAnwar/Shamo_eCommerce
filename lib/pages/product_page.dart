@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo_ecommerce/model/product_model.dart';
+import 'package:shamo_ecommerce/providers/wishlist_provider.dart';
 import 'package:shamo_ecommerce/theme.dart';
 
 class ProductPage extends StatefulWidget {
@@ -30,10 +32,11 @@ class _ProductPageState extends State<ProductPage> {
   ];
 
   int currentIndex = 0;
-  bool isWishlist = false;
 
   @override
   Widget build(BuildContext context) {
+    WishListProvider wishListProvider = Provider.of<WishListProvider>(context);
+
     Future<void> showSuccessDialog() async {
       return showDialog(
         context: context,
@@ -137,7 +140,6 @@ class _ProductPageState extends State<ProductPage> {
             fit: BoxFit.cover,
             image: AssetImage(
               imageUrl,
-              
             ),
           ),
         ),
@@ -259,11 +261,9 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      setState(() {
-                        isWishlist = !isWishlist;
-                      });
+                      wishListProvider.setProduct(widget.product);
 
-                      if (isWishlist) {
+                      if (wishListProvider.isWishlist(widget.product)) {
                         //SNACKBAR
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
@@ -289,7 +289,7 @@ class _ProductPageState extends State<ProductPage> {
                       }
                     },
                     child: Image.asset(
-                      isWishlist
+                      wishListProvider.isWishlist(widget.product)
                           ? 'assets/button_wishlist_2.png'
                           : 'assets/button_wishlist.png',
                       width: 46,
