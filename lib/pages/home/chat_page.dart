@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo_ecommerce/model/message_model.dart';
 import 'package:shamo_ecommerce/providers/auth_provider.dart';
+import 'package:shamo_ecommerce/providers/page_provider.dart';
 import 'package:shamo_ecommerce/services/message_service.dart';
 import 'package:shamo_ecommerce/theme.dart';
 import 'package:shamo_ecommerce/widgets/chat_tile.dart';
@@ -10,6 +11,7 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
     Widget header() {
       return AppBar(
         backgroundColor: bgColor1,
@@ -70,7 +72,9 @@ class ChatPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    pageProvider.currentIndex = 0;
+                  },
                   child: Text(
                     'Explore Store',
                     style: primaryTextStyle.copyWith(
