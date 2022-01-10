@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1072918534626",
+    "project_id": "shamo-ecommerce-6fed9",
+    "storage_bucket": "shamo-ecommerce-6fed9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072918534626:android:867bb6364e69ee9acd01bb",
+        "android_client_info": {
+          "package_name": "com.raflianwar.shamo_ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072918534626-u3vlrcsuobc1ielbi7gkdj7uqo0n8j8l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCntnhBVOH_PC-IPeyWxC8hWdqE5feUV6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072918534626-u3vlrcsuobc1ielbi7gkdj7uqo0n8j8l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
