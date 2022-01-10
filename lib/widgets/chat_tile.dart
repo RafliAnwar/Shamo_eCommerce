@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_ecommerce/model/message_model.dart';
 import 'package:shamo_ecommerce/model/product_model.dart';
 import 'package:shamo_ecommerce/pages/detail_chat_page.dart';
 import 'package:shamo_ecommerce/theme.dart';
 
 class ChatTile extends StatelessWidget {
+  final MessageModel message;
+  ChatTile(this.message);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -41,7 +44,7 @@ class ChatTile extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Good night, This item is on...',
+                        message.message,
                         overflow: TextOverflow.ellipsis,
                         style: secondaryTextStyle.copyWith(
                           fontWeight: light,
