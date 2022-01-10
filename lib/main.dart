@@ -14,8 +14,13 @@ import 'package:shamo_ecommerce/providers/cart_provider.dart';
 import 'package:shamo_ecommerce/providers/product_provider.dart';
 import 'package:shamo_ecommerce/providers/transaction_provider.dart';
 import 'package:shamo_ecommerce/providers/wishlist_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
