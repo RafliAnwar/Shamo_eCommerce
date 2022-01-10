@@ -11,11 +11,11 @@ class MessageService {
       String message,
       ProductModel product}) async {
     try {
-      firestore.collection('meesages').add({
+      firestore.collection('messages').add({
         'userId': user.id,
         'userName': user.name,
         'userImage': user.profilePhotoUrl,
-        'isFromUser': true,
+        'isFromUser': isFromUser,
         'message': message,
         'product': product is UninitializedProductModel ? {} : product.toJson(),
         'createdAt': DateTime.now().toString(),

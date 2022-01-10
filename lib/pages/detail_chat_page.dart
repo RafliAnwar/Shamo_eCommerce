@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo_ecommerce/model/product_model.dart';
+import 'package:shamo_ecommerce/providers/auth_provider.dart';
+import 'package:shamo_ecommerce/services/message_service.dart';
 import 'package:shamo_ecommerce/theme.dart';
 import 'package:shamo_ecommerce/widgets/chat_bubble.dart';
 
@@ -12,8 +15,24 @@ class DetailChatPage extends StatefulWidget {
 }
 
 class _DetailChatPageState extends State<DetailChatPage> {
+  TextEditingController messageController = TextEditingController(text: '');
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleAddMessage() async {
+      await MessageService().addMessage(
+        user: authProvider.user,
+        isFromUser: true,
+        product: widget.product,
+        message: messageController.text,
+      );
+      setState(() {
+        widget.product = UninitializedProductModel();
+        messageController.text = '';
+      });
+    }
+
     Widget header() {
       return PreferredSize(
         child: AppBar(
@@ -139,6 +158,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: messageController,
                         style: primaryTextStyle.copyWith(fontSize: 14),
                         decoration: InputDecoration.collapsed(
                           hintText: 'Typle Message...',
@@ -154,9 +174,12 @@ class _DetailChatPageState extends State<DetailChatPage> {
                 SizedBox(
                   width: 20,
                 ),
-                Image.asset(
-                  'assets/button_send.png',
-                  width: 45,
+                GestureDetector(
+                  onTap: handleAddMessage,
+                  child: Image.asset(
+                    'assets/button_send.png',
+                    width: 45,
+                  ),
                 )
               ],
             ),
