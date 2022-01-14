@@ -315,7 +315,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     Widget footer() {
       return Container(
-        margin: EdgeInsets.only(bottom: 30),
+        margin: EdgeInsets.only(top: 65, bottom: 30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -342,14 +342,13 @@ class _SignUpPageState extends State<SignUpPage> {
     }
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: bgColor1,
       body: Container(
+        width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(
           horizontal: defaultMargin,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             header(),
             nameInput(),
@@ -357,7 +356,6 @@ class _SignUpPageState extends State<SignUpPage> {
             emailInput(),
             passwordInput(),
             isLoading ? LoadingButton() : signUpButton(),
-            Spacer(),
             footer(),
           ],
         ),
