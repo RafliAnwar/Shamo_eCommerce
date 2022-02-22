@@ -16,10 +16,15 @@ import 'package:shamo_ecommerce/providers/product_provider.dart';
 import 'package:shamo_ecommerce/providers/transaction_provider.dart';
 import 'package:shamo_ecommerce/providers/wishlist_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await SystemChrome.setPreferredOrientations([//disable landscape orientation
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(MyApp());
 }
 
